@@ -15,3 +15,4 @@ void prepararVectorTrabajo(eTrabajo lista[],int cantidad)
     }
 }
 
+
