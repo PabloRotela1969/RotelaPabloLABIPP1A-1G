@@ -5,97 +5,65 @@
 
 
 
-void harcodeoTipo(eTipo lista[])
+
+void harcodearTipos(eTipo lista[])
 {
-  int  idTipos[5] = {1000,1001,1002,1003,1004};
-   char  descripcions[10][30] = {"Ave","Perro","Gato","Roedor","Pez"};
+    lista[0] = (eTipo) {1000, "Ave"};
+    lista[1] = (eTipo) {1001, "Perro"};
+    lista[2] = (eTipo) {1002, "Gato"};
+    lista[3] = (eTipo) {1003, "Roedor"};
+    lista[4] = (eTipo) {1004, "Pez"};
 
-
-  int  isEmptys[10] = {0,0,0,0,0,0,0,0,0,0};
-    for(int i =  0; i < 5; i++)
-    {
-     lista[i]. idTipo =  idTipos[i];
-     strcpy(lista[i]. descripcion, descripcions[i]);
-     lista[i]. isEmpty =  isEmptys[i];
-     }
 }
 
-
-void prepararVectorTipo(eTipo lista[],int cantidad)
+void mostrarTipos( eTipo tipos[], int tTip)
 {
-    for(int i = 0; i<cantidad; i++)
+    printf(" id  tipos \n");
+    for(int i=0;i<tTip;i++)
     {
-        lista[i].isEmpty = 1;
+        printf(" %5d  %20s \n",tipos[i].idTipo,tipos[i].descripcion);
+
     }
-}
 
-
-void mostrarCamposParaTipo()
-{
-     printf("| %15s| %30s| \n"," IDTIPO"," DESCRIPCION");
-}
-
-
-void mostrarUnTipo(eTipo unTipo )
-{
-     printf("| %15d| %30s| ",unTipo. idTipo,unTipo. descripcion);
 }
 
 
 
-int cantidadDeTipoCargados(eTipo lista[],int cantidad)
+int seleccionarUnTipo( eTipo tipos[], int tTip)
 {
-    int respuesta = 0;
-    for(int i = 0; i<cantidad; i++)
+    int opcion;
+    int noEncontrado;
+    int indice;
+    do
     {
-        if(lista[i].isEmpty == 0)
+        noEncontrado = 1;
+        printf("\n INGRESE EL TIPO POR SU CODIGO \n");
+        printf(" id   tipo \n");
+        for(int i=0;i<tTip;i++)
         {
-            respuesta++;
+            printf(" %5d  %20s \n",tipos[i].idTipo,tipos[i].descripcion);
+
         }
-    }
-    return respuesta;
-}
 
-
-
-
-
-
-int mostrarTipos(eTipo lista[],int cantidad,char mensaje[])
-{
-    int error = 1;
-    int NoHayParaMostrar = 1;
-    int cantidadElementosPorPagina = 40;
-    float resto;
-
-    if(lista != NULL && cantidad != 0 && cantidadDeTipoCargados(lista,cantidad) > 0)
-    {
-        system("cls");
-        printf(" %s \n", mensaje);
-       mostrarCamposParaTipo();
-        for(int i = 0; i<cantidad; i++)
+        opcion = inputInt("Ingrese el id del tipo : ");
+        for(int i=0;i<tTip;i++)
         {
-            if(lista[i].isEmpty == 0)
+
+            if(tipos[i].idTipo == opcion)
             {
-                error = 0;
-                resto = i % cantidadElementosPorPagina;
-                if( resto == 0 && i > 0)
-                {
-                    inputChar("Pulse enter para continuar :");
-                    system("cls");
-                  mostrarCamposParaTipo();
-                }
-                NoHayParaMostrar = 0;
-              mostrarUnTipo(lista[i]);
-              printf("\n");
+                indice = i;
+                noEncontrado = 0;
+                break;
             }
+
+
         }
-    }
-    if(NoHayParaMostrar)
+
+    }while(noEncontrado);
+     if(!noEncontrado)
     {
-        printf("\nNo hay elementos para mostrar\n");
+         printf("\n_________________________________________________________\n");
+        printf(" %5d  %20s \n",tipos[indice].idTipo,tipos[indice].descripcion);
     }
-
-    return error;
+    return opcion;
 }
-

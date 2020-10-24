@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,101 +6,53 @@
 
 
 
-void harcodeoServicio(eServicio lista[])
+void mostrarServicios( eServicio servicios[], int tSer)
 {
-  int  idServicios[3] = {20000,20001,20002};
-   char  descripcions[3][25] = {"Corte","Desparacitado","Castrado"};
-   float  precios[3] = {250.0,300.0,400.0};
-
-  int  isEmptys[3] = {0,0,0};
-    for(int i =  0; i < 3; i++)
+    printf(" id  servicios \n");
+    for(int i=0;i<tSer;i++)
     {
-     lista[i]. idServicio =  idServicios[i];
-     strcpy(lista[i]. descripcion, descripcions[i]);
-     lista[i]. precio =  precios[i];
+        printf(" %5d  %20s %4.3f\n",servicios[i].idServicio, servicios[i].descripcion,servicios[i].precio);
 
-     lista[i]. isEmpty =  isEmptys[i];
-     }
-}
-
-void prepararVectorServicio(eServicio lista[],int cantidad)
-{
-    for(int i = 0; i<cantidad; i++)
-    {
-        lista[i].isEmpty = 1;
     }
+
 }
 
 
-
-void mostrarCamposParaServicio()
+int seleccionarServicios(eServicio servicios[], int tSer)
 {
-     printf("| %15s| %30s| %15s| \n"," IDSERVICIO"," DESCRIPCION"," PRECIO");
-}
-
-
-void mostrarUnServicio(eServicio unServicio )
-{
-     printf("| %15d| %30s| %15.5f| \n",unServicio. idServicio,unServicio. descripcion,unServicio. precio);
-}
-
-
-int cantidadDeServicioCargados(eServicio lista[],int cantidad)
-{
-    int respuesta = 0;
-    for(int i = 0; i<cantidad; i++)
+    int opcion;
+    int noEncontrado;
+    do
     {
-        if(lista[i].isEmpty == 0)
+        noEncontrado = 1;
+        printf("\n INGRESE EL SERVICIO POR SU CODIGO \n");
+        mostrarServicios(servicios,tSer);
+
+        opcion = inputInt("Ingrese el id del servicio : ");
+        for(int i=0;i<tSer;i++)
         {
-            respuesta++;
-        }
-    }
-    return respuesta;
-}
 
-
-
-
-
-
-
-int mostrarServicios(eServicio lista[],int cantidad,char mensaje[])
-{
-    int error = 1;
-    int NoHayParaMostrar = 1;
-    int cantidadElementosPorPagina = 40;
-    float resto;
-
-    if(lista != NULL && cantidad != 0 && cantidadDeServicioCargados(lista,cantidad) > 0)
-    {
-        system("cls");
-        printf(" %s \n", mensaje);
-       mostrarCamposParaServicio();
-        for(int i = 0; i<cantidad; i++)
-        {
-            if(lista[i].isEmpty == 0)
+            if(servicios[i].idServicio == opcion)
             {
-                error = 0;
-                resto = i % cantidadElementosPorPagina;
-                if( resto == 0 && i > 0)
-                {
-                    inputChar("Pulse enter para continuar :");
-                    system("cls");
-                  mostrarCamposParaServicio();
-                }
-                NoHayParaMostrar = 0;
-              mostrarUnServicio(lista[i]);
+                noEncontrado = 0;
+                break;
             }
         }
+        if(noEncontrado)
+        {
+            printf("\nNO SE ENCUENTRA EL NUMERO INGRESADO, VUELVA A INTENTARLO\n");
+        }
     }
-    if(NoHayParaMostrar)
-    {
-        printf("\nNo hay elementos para mostrar\n");
-    }
-
-    return error;
+    while(noEncontrado);
+    return opcion;
 }
 
 
 
+void harcodearServicios(eServicio lista[])
+{
+    lista[0] = (eServicio) {20000, "Corte",250};
+    lista[1] = (eServicio) {20001, "Desparasitado",300};
+    lista[2] = (eServicio) {20002, "Castrado",400};
+}
 

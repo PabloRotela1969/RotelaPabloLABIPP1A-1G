@@ -1,0 +1,148 @@
+# depslib dependency file v1.0
+1603487762 source:c:\regx\utnfra_tec\t_p\proglab2cuat\ejercitacion\mascotas4\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Mascotas.h"
+	"Trabajos.h"
+
+1603487505 source:c:\regx\utnfra_tec\t_p\proglab2cuat\ejercitacion\mascotas4\colores.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Colores.h"
+
+1603487803 c:\regx\utnfra_tec\t_p\proglab2cuat\ejercitacion\mascotas4\colores.h
+	"Funciones.h"
+
+1603486595 c:\regx\utnfra_tec\t_p\proglab2cuat\ejercitacion\mascotas4\funciones.h
+
+1603486595 source:c:\regx\utnfra_tec\t_p\proglab2cuat\ejercitacion\mascotas4\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Funciones.h"
+
+1603487714 c:\regx\utnfra_tec\t_p\proglab2cuat\ejercitacion\mascotas4\mascotas.h
+	"Funciones.h"
+	"Tipos.h"
+	"Colores.h"
+
+1603486766 c:\regx\utnfra_tec\t_p\proglab2cuat\ejercitacion\mascotas4\tipos.h
+	"Funciones.h"
+
+1603487714 c:\regx\utnfra_tec\t_p\proglab2cuat\ejercitacion\mascotas4\trabajos.h
+	"Fecha.h"
+	"Funciones.h"
+	"Mascotas.h"
+	"Servicios.h"
+
+1603486595 c:\regx\utnfra_tec\t_p\proglab2cuat\ejercitacion\mascotas4\fecha.h
+
+1603487505 c:\regx\utnfra_tec\t_p\proglab2cuat\ejercitacion\mascotas4\servicios.h
+	"Funciones.h"
+
+1603487505 source:c:\regx\utnfra_tec\t_p\proglab2cuat\ejercitacion\mascotas4\mascotas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Mascotas.h"
+
+1603487526 source:c:\regx\utnfra_tec\t_p\proglab2cuat\ejercitacion\mascotas4\servicios.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Servicios.h"
+
+1603486766 source:c:\regx\utnfra_tec\t_p\proglab2cuat\ejercitacion\mascotas4\tipos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Tipos.h"
+
+1603487714 source:c:\regx\utnfra_tec\t_p\proglab2cuat\ejercitacion\mascotas4\trabajos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Trabajos.h"
+
+1603487505 source:c:\users\1969\desktop\rotelapablolabipp1a-1g\mascotas\colores.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Colores.h"
+
+1603487803 c:\users\1969\desktop\rotelapablolabipp1a-1g\mascotas\colores.h
+	"Funciones.h"
+
+1603486595 c:\users\1969\desktop\rotelapablolabipp1a-1g\mascotas\funciones.h
+
+1603486595 source:c:\users\1969\desktop\rotelapablolabipp1a-1g\mascotas\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Funciones.h"
+
+1603500697 source:c:\users\1969\desktop\rotelapablolabipp1a-1g\mascotas\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Mascotas.h"
+	"Trabajos.h"
+
+1603499125 c:\users\1969\desktop\rotelapablolabipp1a-1g\mascotas\mascotas.h
+	"Funciones.h"
+	"Tipos.h"
+	"Colores.h"
+	"Clientes.h"
+	"MascotasColores.h"
+
+1603486766 c:\users\1969\desktop\rotelapablolabipp1a-1g\mascotas\tipos.h
+	"Funciones.h"
+
+1603500722 c:\users\1969\desktop\rotelapablolabipp1a-1g\mascotas\trabajos.h
+	"Fecha.h"
+	"Funciones.h"
+	"Mascotas.h"
+	"Servicios.h"
+
+1603486595 c:\users\1969\desktop\rotelapablolabipp1a-1g\mascotas\fecha.h
+
+1603487505 c:\users\1969\desktop\rotelapablolabipp1a-1g\mascotas\servicios.h
+	"Funciones.h"
+
+1603499191 source:c:\users\1969\desktop\rotelapablolabipp1a-1g\mascotas\mascotas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Mascotas.h"
+
+1603487526 source:c:\users\1969\desktop\rotelapablolabipp1a-1g\mascotas\servicios.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Servicios.h"
+
+1603486766 source:c:\users\1969\desktop\rotelapablolabipp1a-1g\mascotas\tipos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Tipos.h"
+
+1603500697 source:c:\users\1969\desktop\rotelapablolabipp1a-1g\mascotas\trabajos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Trabajos.h"
+
+1603497211 source:c:\users\1969\desktop\rotelapablolabipp1a-1g\mascotas\clientes.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Clientes.h"
+
+1603492687 c:\users\1969\desktop\rotelapablolabipp1a-1g\mascotas\clientes.h
+	"Funciones.h"
+
+1603498653 c:\users\1969\desktop\rotelapablolabipp1a-1g\mascotas\mascotascolores.h
+

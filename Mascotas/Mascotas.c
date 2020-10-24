@@ -5,376 +5,502 @@
 
 
 
-
-
-void harcodeoMascota(eMascota lista[])
-{
-  int  idMascotas[10] = {10,11,12,13,14,15,16,17,18,19};
-   char  nombres[10][30] = {"Michi","Pipi","Ayudante de Santa","Firulais","Dobby","Boby","Pucky","Michifuz","Bolt","Dexter"};
-  int  idTipos[10] = {1000,1001,1002,1003,1001,1003,1003,1004,1002,1003};
-  int  idColors[10] = {5000,5001,5004,5001,5002,5002,5003,5001,5002,5004};
-  int  edads[10] = {10,11,12,13,14,15,16,17,18,19};
-
-
-  int  isEmptys[10] = {0,0,0,0,0,0,0,0,0,0};
-    for(int i =  0; i < 10; i++)
-    {
-     lista[i]. idMascota =  idMascotas[i];
-     strcpy(lista[i]. nombre, nombres[i]);
-     lista[i]. idTipo =  idTipos[i];
-     lista[i]. idColor =  idColors[i];
-     lista[i]. edad =  edads[i];
-
-
-     lista[i]. isEmpty =  isEmptys[i];
-     }
-}
-
-void prepararVectorMascota(eMascota lista[],int cantidad)
-{
-    for(int i = 0; i<cantidad; i++)
-    {
-        lista[i].isEmpty = 1;
-    }
-}
-
-
-
-int buscarLibreMascota(eMascota lista[],int cantidad)
-{
-    int respuesta = -1;
-    if(lista != NULL && cantidad != 0)
-    {
-        for(int i = 0; i<cantidad; i++)
-        {
-            if(lista[i].isEmpty == 1)
-            {
-                respuesta = i;
-                break;
-            }
-        }
-    }
-    return respuesta;
-}
-
-
-void mostrarCamposParaMascota()
-{
-     printf("| %15s| %30s| %20s| %20s| %10s| \n"," IDMASCOTA"," NOMBRE","TIPO","COLOR"," EDAD");
-}
-
-
-void mostrarUnMascota(eMascota unMascota )
-{
-     printf("| %15s| %30s|  \n"," IDMASCOTA"," NOMBRE");
-     printf("| %15d| %30s|  \n",unMascota. idMascota,unMascota. nombre);
-
-
-}
-
-
-
-
-
-
-
-
-int mostrarMascotas(eMascota lista[],int cantidad, eTipo listaTipos[], int cantidadTipos, eColor listaColores[], int cantidadColores, char mensaje[30])
-{
-    int error = 1;
-    int NoHayParaMostrar = 1;
-    int cantidadElementosPorPagina = 40;
-    char tipoEncontrado[20];
-    char colorEncontrado[20];
-    float resto;
-
-    if(lista != NULL && cantidad != 0 && cantidadDeMascotaCargados(lista,cantidad) > 0)
-    {
-        system("cls");
-        printf(" %s \n", mensaje);
-       mostrarCamposParaMascota();
-        for(int i = 0; i<cantidad; i++)
-        {
-            if(lista[i].isEmpty == 0)
-            {
-                error = 0;
-                resto = i % cantidadElementosPorPagina;
-                if( resto == 0 && i > 0)
-                {
-                    inputChar("Pulse enter para continuar :");
-                    system("cls");
-                  mostrarCamposParaMascota();
-                }
-                NoHayParaMostrar = 0;
-
-              for(int j=0; j<cantidadTipos; j++)
-              {
-                  if(lista[i].idTipo == listaTipos[j].idTipo && listaTipos[j].isEmpty == 0)
-                  {
-                      strcpy(tipoEncontrado,listaTipos[j].descripcion);
-                      break;
-                  }
-              }
-              for(int k=0; k<cantidadColores; k++)
-              {
-                  if(lista[i].idColor == listaColores[k].idColor && listaColores[k].isEmpty == 0)
-                  {
-                      strcpy(colorEncontrado,listaColores[k].nombreColor);
-                      break;
-                  }
-              }
-              printf("| %15d| %30s| %20s| %20s| %10d| \n",lista[i].idMascota, lista[i].nombre,tipoEncontrado,colorEncontrado, lista[i].edad);
-
-
-            }
-        }
-    }
-    if(NoHayParaMostrar)
-    {
-        printf("\nNo hay elementos para mostrar\n");
-    }
-
-    return error;
-}
-
-
-int cantidadDeMascotaCargados(eMascota lista[],int cantidad)
-{
-    int respuesta = 0;
-    for(int i = 0; i<cantidad; i++)
-    {
-        if(lista[i].isEmpty == 0)
-        {
-            respuesta++;
-        }
-    }
-    return respuesta;
-}
-
-int proximoIDMascota(eMascota lista[],int cantidad)
-{
-    int max = -1;
-    if(lista != NULL && cantidad != 0 && cantidadDeMascotaCargados(lista,cantidad) > 0)
-    {
-
-        for(int i = 0; i<cantidad; i++)
-        {
-            if((lista[i].isEmpty == 0 && max < lista[i]. idMascota) )
-            {
-                max = lista[i]. idMascota;
-            }
-        }
-        max ++;
-    }
-    return max ;
-}
-
-
-int buscarMascotaPorID(eMascota lista[],int cantidad, int id)
+int buscarLibreMascota(eMascota mascotas[], int tMas)
 {
     int encontrado = -1;
-    if(lista != NULL && cantidad != 0 && cantidadDeMascotaCargados(lista,cantidad) > 0)
+    for(int i=0; i<tMas; i++)
     {
-        for(int i = 0; i<cantidad; i++)
-        {
-            if((lista[i].isEmpty == 0 && lista[i]. idMascota == id) )
-            {
-                encontrado = i;
 
-            }
+        if(mascotas[i].isEmpty == 1)
+        {
+            encontrado = i;
+            break;
         }
     }
-    return encontrado ;
+    return encontrado;
 }
 
-
-int altaMascota(eMascota lista[],int cantidad, eTipo listaTipos[], int cantidadTipos, eColor listaColores[], int cantidadColores)
+int altaMascotas(eMascota mascotas[], int tMas, eColor colores[], int tCol, eTipo tipos[], int tTip, int idNuevo, eCliente clientes[], int tClie)
 {
-    int error = 1;
-    int indice;
-    int legajo;
-    eMascota nuevo;
-    int opcion;
-    if(lista != NULL && cantidad != 0)
+    eMascota aux;
+    int indiceLibre;
+    int resultado = 0;
+   if( (tMas >0) || (tCol >0) || (tTip > 0))
     {
-
-        indice = buscarLibreMascota(lista, cantidad);
-        if(indice > -1)
+        printf("ALTA DE MASCOTA \n");
+        indiceLibre = buscarLibreMascota(mascotas,tMas);
+        aux.idMascota = idNuevo;
+        inputString("\ningrese el nombre de la mascota : ",aux.nombre,20);
+        aux.idColor = seleccionarUnColor(colores,tCol);
+        aux.idTipo = seleccionarUnTipo(tipos,tTip);
+        aux.edad = inputIntDesdeHasta("\nIngrese la edad de la mascota : ",1,100);
+        aux.idCliente = seleccionarUnCliente(clientes, tClie);
+        aux.isEmpty = 0;
+        if(inputInt("\nIngrese 1 si confirma, cualquier otra para cancelar : ") == 1)
         {
-             system("cls");
-            printf(" alta de Mascota\n");
-            legajo = proximoIDMascota(lista, cantidad);
-
-            nuevo.isEmpty = 0;
-            nuevo. idMascota = legajo;
-            inputString("Ingrese  nombre : ",nuevo. nombre, 30);
-            mostrarTipos(listaTipos,cantidadTipos,"Lista de Tipos");
-            nuevo. idTipo = inputIntDesdeHasta("Ingrese  idTipo : ",1000,1004);
-            mostrarColors(listaColores, cantidadColores, "Lista de colores");
-            nuevo. idColor = inputIntDesdeHasta("Ingrese  idColor : ", 5000, 5004);
-            nuevo. edad = inputInt("Ingrese  edad : ");
-
-
-
-
-
-
-
-
-            opcion = inputIntDesdeHasta("Confirma con 1 , cancela con 2 : ",1,2);
-            error = 2;
-            if(opcion == 1)
-            {
-                lista[indice] = nuevo;
-                error = 0;
-            }
-
-
-
+            mascotas[indiceLibre] = aux;
         }
         else
         {
-            printf("\nNO HAY MÁS ESPACIO DISPONIBLE\n");
-        }
-    }
-    return error;
-}
-
-
-
-int bajaMascota(eMascota lista[],int cantidad, eTipo listaTipos[], int cantidadTipos, eColor listaColores[], int cantidadColores)
-{
-    int error;
-    int legajo;
-    int indice;
-
-
-    if(lista != NULL && cantidad != 0 && cantidadDeMascotaCargados(lista,cantidad) > 0)
-    {
-       system("cls");
-
-        mostrarMascotas(lista, cantidad, listaTipos,cantidadTipos, listaColores, cantidadColores,"ELIMINAR Mascota");
-        legajo = inputInt("Ingrese el ID desde el listado : ");
-        indice = buscarMascotaPorID(lista, cantidad, legajo);
-
-        if(indice > -1)
-        {
-       system("cls");
-
-            mostrarUnMascota(lista[indice]);
-            error = 2;
-            if(inputIntDesdeHasta("Confirma con 1 , cancela con 2 : ",1,2) == 1)
-            {
-                lista[indice].isEmpty = 1;
-                error = 0;
-            }
-
-        }
-        else
-        {
-            printf("\nNO SE ENCONTRÓ EL ALUMNO INGRESADO\n");
-            error = 1;
+            resultado = 2;
         }
     }
     else
     {
-        printf("\n No hay elementos para mostrar \n");
-        error = 1;
+        printf("\nNO HAY DATOS PARA MOSTRAR\n");
+        resultado = 1;
     }
-
-    return error;
+    return resultado;
 }
 
 
-int modificaMascota(eMascota lista[],int cantidad,eTipo listaTipos[], int cantidadTipos, eColor listaColores[], int cantidadColores)
+int bajaMascotas(eMascota mascotas[], int tMas, eColor colores[], int tCol, eTipo tipos[], int tTip, eCliente clientes[], int tClie)
 {
-    int error;
-    int legajo;
+
     int indice;
-    int auxInt;
-    char auxString[30];
-
-
-    int opcion;
-    system("cls");
-    if(lista != NULL && cantidad != 0 && cantidadDeMascotaCargados(lista,cantidad) > 0)
+    int resultado = 0;
+    int i;
+   if( (tMas >0) || (tCol >0) || (tTip > 0))
     {
-
-        mostrarMascotas(lista, cantidad, listaTipos,cantidadTipos, listaColores, cantidadColores,"MODIFICAR Mascota");
-
-        legajo = inputInt("Ingrese el legajo desde el listado : ");
-        indice = buscarMascotaPorID(lista, cantidad, legajo);
-
-        if(indice > -1)
+        printf("BAJA DE MASCOTA \n");
+        indice = seleccionarUnaMascota(mascotas,tMas,colores,tCol,tipos,tTip,clientes, tClie);
+        for( i=0; i<tMas; i++)
         {
-            system("cls");
-            printf(" MODIFICAR Mascota \n");
-            mostrarCamposParaMascota();
-            mostrarUnMascota(lista[indice]);
-            printf("Elija el campo por numero: \n");
-            printf("1 =  nombre \n");
-            printf("2 =  idTipo \n");
-            printf("3 =  idColor \n");
-            printf("4 =  edad \n");
-
-
-
-
-
-
-
-            opcion = inputIntDesdeHasta("Elija opción del 1 al 3 : ",1,3);
-            error = 2;
-            switch(opcion)
+            if(mascotas[i].idMascota == indice)
             {
-            case 1:
-                inputString("Ingrese el nuevo  nombre : ",auxString,30);
-                if(inputIntDesdeHasta("Confirma con 1 , cancela con 2 : ",1,2) == 1)
-                {
-                    strcpy(lista[indice]. nombre,auxString);
-                    error = 0;
-                }
-                break;
-            case 2:
-                auxInt = inputInt("Ingrese el nuevo   idTipo : ");
-                if(inputIntDesdeHasta("Confirma con 1 , cancela con 2 : ",1,2) == 1)
-                {
-                    lista[indice]. idTipo = auxInt;
-                    error = 0;
-                }
-                break;
-            case 3:
-                auxInt = inputInt("Ingrese el nuevo   idColor : ");
-                if(inputIntDesdeHasta("Confirma con 1 , cancela con 2 : ",1,2) == 1)
-                {
-                    lista[indice]. idColor = auxInt;
-                    error = 0;
-                }
-                break;
-            case 4:
-                auxInt = inputInt("Ingrese el nuevo   edad : ");
-                if(inputIntDesdeHasta("Confirma con 1 , cancela con 2 : ",1,2) == 1)
-                {
-                    lista[indice]. edad = auxInt;
-                    error = 0;
-                }
-                break;
 
-
-
+                break;
             }
+        }
+
+        if(inputInt("\n Ingrese 1 si confirma, cualquier otra para cancelar : ") == 1)
+        {
+            mascotas[i].isEmpty = 1;
         }
         else
         {
-            printf("\nNO SE ENCONTRÓ EL REGISTRO INGRESADO\n");
-            error = 1;
+            resultado = 2;
         }
     }
     else
     {
-        printf("\n No hay elementos para mostrar \n");
-        error = 1;
+        printf("\nNO HAY DATOS PARA MOSTRAR\n");
+        resultado = 1;
+    }
+    return resultado;
+}
+
+
+
+int modificaMascotas(eMascota mascotas[], int tMas, eColor colores[], int tCol, eTipo tipos[], int tTip, eCliente clientes[], int tClie)
+{
+    eMascota aux;
+    int indice;
+    int camposAmodificar;
+    int resultado = 0;
+    int i;
+   if( (tMas >0) || (tCol >0) || (tTip > 0))
+    {
+        printf("\n MODIFICA DE MASCOTA \n");
+        indice = seleccionarUnaMascota(mascotas,tMas,colores,tCol,tipos,tTip, clientes, tClie);
+        for( i=0; i<tMas; i++)
+        {
+            if(mascotas[i].idMascota == indice)
+            {
+
+                break;
+            }
+        }
+        camposAmodificar = inputIntDesdeHasta("\nIngrese por numero \n 1 = nombre \n 2 = color \n 3 = tipo \n 4 = edad \n 5 = cliente \n: ",1,5);
+        switch(camposAmodificar)
+        {
+        case 1:
+           inputString("\ningrese el nombre nuevo : ", aux.nombre ,20);
+            if(inputInt("\n Ingrese 1 si confirma, cualquier otra para cancelar : ") == 1)
+            {
+                strcpy(mascotas[i].nombre ,aux.nombre);
+            }
+            else
+            {
+                resultado = 2;
+            }
+
+
+            break;
+
+        case 2:
+            aux.idColor = seleccionarUnColor(colores,tCol);
+           if(inputInt("\n Ingrese 1 si confirma, cualquier otra para cancelar : ") == 1)
+            {
+                mascotas[i].idColor = aux.idColor;
+            }
+            else
+            {
+                resultado = 2;
+            }
+            break;
+        case 3:
+            aux.idTipo = seleccionarUnTipo(tipos,tTip);
+           if(inputInt("\n Ingrese 1 si confirma, cualquier otra para cancelar : ") == 1)
+            {
+                mascotas[i].idTipo = aux.idTipo;
+            }
+            else
+            {
+                resultado = 2;
+            }
+            break;
+        case 4:
+            aux.edad = inputIntDesdeHasta("\n Ingrese una edad : ",1,100);
+           if(inputInt("\n Ingrese 1 si confirma, cualquier otra para cancelar : ") == 1)
+            {
+                mascotas[i].edad = aux.edad;
+            }
+            else
+            {
+                resultado = 2;
+            }
+            break;
+
+     case 5:
+            aux.idCliente = seleccionarUnCliente(clientes, tClie);
+           if(inputInt("\n Ingrese 1 si confirma, cualquier otra para cancelar : ") == 1)
+            {
+                mascotas[i].idCliente = aux.idCliente;
+            }
+            else
+            {
+                resultado = 2;
+            }
+            break;
+
+        }
+
+
+    }
+    else
+    {
+        printf("\nNO HAY DATOS PARA MOSTRAR\n");
+        resultado = 1;
+    }
+return resultado;
+}
+
+
+
+void harcodearMascotas(eMascota lista[])
+{
+    lista[0] = (eMascota) {10, "Boby",1001,5001,3,0,10};
+    lista[1] = (eMascota) {11, "Luly",1000,5003,5,0,10};
+    lista[2] = (eMascota) {12, "Pipy",1003,5002,2,0,12};
+    lista[3] = (eMascota) {13, "Rory",1004,5004,7,0,11};
+    lista[4] = (eMascota) {14, "Pit",1000,5001,6,0,13};
+
+}
+
+void prepararArrayMascotas(eMascota mascotas[], int tope)
+{
+    for(int i=0;i<tope;i++)
+    {
+        mascotas[i].isEmpty = 1;
+    }
+}
+
+void mostarUnaMascota(eMascota una,eColor colores[], int tColor, eTipo tipos[],int tTipo, eCliente clientes[], int tClie)
+{
+
+    if( (tColor >0) && (tTipo > 0))
+    {
+            printf(" %5d %20s ", una.idMascota,una.nombre);
+            for(int i=0;i<tColor;i++)
+            {
+                if(una.isEmpty == 0 && una.idColor == colores[i].idColor)
+                {
+                    printf("%20s", colores[i].nombreColor);
+                    break;
+                }
+            }
+            for(int i=0;i<tTipo;i++)
+            {
+                if(una.isEmpty == 0 && una.idTipo == tipos[i].idTipo)
+                {
+                    printf("%20s", tipos[i].descripcion);
+                    break;
+                }
+            }
+            printf("%5d", una.edad);
+            for(int i=0;i<tClie;i++)
+            {
+                if(una.isEmpty == 0 && una.idCliente == clientes[i].idCliente)
+                {
+                    printf("%20s %1c ", clientes[i].nombre, clientes[i].sexo);
+                    break;
+                }
+            }
+
+
+
+    }
+    else
+    {
+        printf("\nNO HAY DATOS PARA MOSTRAR\n");
+    }
+}
+
+void mostrarMascotas(eMascota mascotas[], int tMas, eColor colores[], int tCol, eTipo tipos[], int tTip, eCliente clientes[], int tClie)
+{
+   if( (tMas >0) || (tCol >0) || (tTip > 0))
+    {
+        printf(" %5s %20s %20s %20s  %5s %16s %5s \n", "id","nombre","color","tipo","edad" , "duenio" , "sexo");
+        for(int i=0;i<tMas;i++)
+        {
+            if(mascotas[i].isEmpty == 0)
+            {
+
+                mostarUnaMascota(mascotas[i],colores,tCol,tipos,tTip, clientes, tClie);
+                printf("\n");
+            }
+        }
+
+
+    }
+    else
+    {
+        printf("\nNO HAY DATOS PARA MOSTRAR\n");
+    }
+}
+
+
+
+
+
+int seleccionarUnaMascota(eMascota mascotas[], int tMas, eColor colores[], int tCol, eTipo tipos[], int tTip, eCliente clientes[], int tClie)
+{
+    int opcion;
+    int noEncontrado;
+    int indice;
+    do
+    {
+        noEncontrado = 1;
+        printf("\n INGRESE LA MASCOTA POR SU CODIGO \n");
+        mostrarMascotas(mascotas,tMas,colores,tCol,tipos,tTip,clientes,tClie);
+        opcion = inputInt("Ingrese el id de la mascota : ");
+        for(int i=0; i<tMas; i++)
+        {
+
+            if(mascotas[i].idMascota == opcion)
+            {
+                indice = i;
+                noEncontrado = 0;
+                break;
+            }
+        }
+        if(noEncontrado)
+        {
+            printf("\nNO SE ENCUENTRA EL NUMERO INGRESADO, VUELVA A INTENTARLO\n");
+        }
+
+    }
+    while(noEncontrado);
+    if(!noEncontrado)
+    {
+        printf("\n_________________________________________________________\n");
+        mostarUnaMascota(mascotas[indice],colores,tCol,tipos,tTip,clientes,tClie);
+
+    }
+    return opcion;
+}
+
+void mostrarLasMascotasDeColorSeleccionado(eMascota mascotas[], int tMas, eColor colores[], int tCol)
+{
+    int opcion = seleccionarUnColor(colores,tCol);
+    int respuesta = 0;
+    printf(" %20s %5s %20s \n","nombre","edad","color");
+    for(int j=0; j<tCol; j++)
+    {
+        if(colores[j].idColor == opcion)
+        {
+            for(int i= 0; i<tMas; i++)
+            {
+                if(mascotas[i].idColor == opcion)
+                {
+                    printf(" %20s %5d %20s \n",mascotas[i].nombre, mascotas[i].edad, colores[j].nombreColor);
+                    respuesta = 1;
+                }
+            }
+            break;
+        }
+
+
+    }
+    if(respuesta == 0)
+    {
+        printf("\nNO SE ENCONTRARON REGISTROS QUE CUMPLAN CON ESE CRITERIO\n");
+    }
+}
+
+void mostrarLasMascotasDeTipoSeleccionado(eMascota mascotas[], int tMas, eTipo tipos[], int tTip)
+{
+    int opcion = seleccionarUnTipo(tipos,tTip);
+    int respuesta = 0;
+    printf(" %20s %5s %20s \n","nombre","edad","tipo");
+    for(int j=0; j<tTip; j++)
+    {
+        if(tipos[j].idTipo == opcion)
+        {
+            for(int i= 0; i<tMas; i++)
+            {
+                if(mascotas[i].idTipo == opcion)
+                {
+                    printf(" %20s %5d %20s \n",mascotas[i].nombre, mascotas[i].edad, tipos[j].descripcion);
+                    respuesta = 1;
+                }
+            }
+            break;
+        }
+    }
+    if(respuesta == 0)
+    {
+        printf("\nNO SE ENCONTRARON REGISTROS QUE CUMPLAN CON ESE CRITERIO\n");
+    }
+}
+
+
+void informarLasMascotasDeMenorEdad(eMascota mascotas[], int tMas)
+{
+    int minEdad = 10000;
+    printf(" %20s %5s  \n","nombre","edad");
+    for(int i= 0; i<tMas; i++)
+    {
+        if(mascotas[i].isEmpty == 0 )
+        {
+            if( mascotas[i].edad < minEdad )
+            {
+                minEdad = mascotas[i].edad;
+            }
+        }
+    }
+    for(int i= 0; i<tMas; i++)
+    {
+        if((mascotas[i].isEmpty == 0 )&& (mascotas[i].edad == minEdad))
+        {
+           printf(" %20s %5d  \n",mascotas[i].nombre, mascotas[i].edad);
+
+        }
     }
 
-    return error;
+
+
 }
+
+
+
+void listarMascotasSeparadasPorTipo(eMascota mascotas[], int tMas, eTipo tipos[], int tTip)
+{
+    printf(" %20s %5s  \n","nombre","tipos");
+    for(int j= 0; j<tTip; j++)
+    {
+        for(int i= 0; i<tMas; i++)
+        {
+            if(mascotas[i].idTipo == tipos[j].idTipo )
+            {
+                printf(" %20s %5d %20s \n",mascotas[i].nombre, mascotas[i].edad, tipos[j].descripcion);
+            }
+        }
+    }
+}
+
+
+void listarMascotasConUnColorYUnTipo(eMascota mascotas[], int tMas, eColor colores[], int tCol, eTipo tipos[], int tTip)
+{
+    int opcionColor;
+    int opcionTipo;
+    int cantidadMascotasCumplenCriterio = 0;
+    opcionColor = seleccionarUnColor(colores,tCol);
+    opcionTipo = seleccionarUnTipo(tipos,tTip);
+    for(int i= 0; i<tMas; i++)
+    {
+        if(mascotas[i].isEmpty == 0)
+        {
+
+
+            for(int j= 0; j<tCol; j++)
+            {
+                if(mascotas[i].idColor == opcionColor )
+                {
+                    for(int k=0; k<tTip;k++)
+                    {
+                        if(mascotas[i].idTipo == opcionTipo )
+                        {
+                            cantidadMascotasCumplenCriterio++;
+                            break;
+                        }
+
+                    }
+                    break;
+
+                }
+            }
+        }
+    }
+    printf("\n Hay %d mascotas que cumplen con el criterio \n ", cantidadMascotasCumplenCriterio);
+
+}
+
+
+
+void mostrarEloLosColoresConMasCantidadDeMascotas(eMascota mascotas[], int tMas, eColor colores[], int tCol)
+{
+    eMascotasColores listaAux[20];
+    eMascotasColores aux;
+    int cantidadMascotasConUnColor;
+    int k = 0;
+    for(int i = 0; i<tCol; i++)
+    {
+        cantidadMascotasConUnColor = 0;
+        for(int j=0;j<tMas; j++)
+        {
+            if((colores[i].idColor == mascotas[j].idColor) && (mascotas[j].isEmpty == 0 ))
+            {
+                cantidadMascotasConUnColor++;
+            }
+
+        }
+        listaAux[k].cantidadMascotas = cantidadMascotasConUnColor;
+        strcpy(listaAux[k].nombreColor , colores[i].nombreColor);
+        k++;
+
+    }
+    for(int i = 0; i<k - 1; i++)
+    {
+        for(int j = i+1; j<k; j++)
+        {
+            if(listaAux[i].cantidadMascotas < listaAux[j].cantidadMascotas)
+            {
+                aux = listaAux[i];
+                listaAux[i] = listaAux[j];
+                listaAux[j] = aux;
+            }
+        }
+    }
+    for(int i = 0; i<k ; i++)
+    {
+        printf(" Estas fueron las puntuaciones para el color %20s : %5d mascotas : \n", listaAux[i].nombreColor, listaAux[i].cantidadMascotas);
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

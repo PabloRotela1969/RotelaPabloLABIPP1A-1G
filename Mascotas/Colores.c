@@ -6,102 +6,73 @@
 
 
 
-void harcodeoColor(eColor lista[])
+
+void harcodearColores(eColor lista[])
 {
-  int  idColors[5] = {5000,5001,5002,5003,5004};
-   char  nombreColors[5][20] = {"Negro","Blanco","Gris","Rojo","Azul"};
+    lista[0] = (eColor) {5000, "Negro"};
+    lista[1] = (eColor) {5001, "Blanco"};
+    lista[2] = (eColor) {5002, "Gris"};
+    lista[3] = (eColor) {5003, "Rojo"};
+    lista[4] = (eColor) {5004, "Azul"};
 
-
-  int  isEmptys[10] = {0,0,0,0,0,0,0,0,0,0};
-    for(int i =  0; i < 5; i++)
-    {
-     lista[i]. idColor =  idColors[i];
-     strcpy(lista[i]. nombreColor, nombreColors[i]);
-
-
-     lista[i]. isEmpty =  isEmptys[i];
-     }
 }
 
-void prepararVectorColor(eColor lista[],int cantidad)
+
+void mostrarColores( eColor colores[], int tCol)
 {
-    for(int i = 0; i<cantidad; i++)
+    printf(" id  colores \n");
+    for(int i=0;i<tCol;i++)
     {
-        lista[i].isEmpty = 1;
+        printf(" %5d  %20s \n",colores[i].idColor,colores[i].nombreColor);
+
     }
-}
 
-
-void mostrarCamposParaColor()
-{
-     printf("| %15s| %30s| \n"," IDCOLOR"," NOMBRECOLOR");
-}
-
-
-void mostrarUnColor(eColor unColor )
-{
-     printf("| %15d| %30s| ",unColor. idColor,unColor. nombreColor);
 }
 
 
 
-
-int cantidadDeColorCargados(eColor lista[],int cantidad)
+int seleccionarUnColor( eColor colores[], int tCol)
 {
-    int respuesta = 0;
-    for(int i = 0; i<cantidad; i++)
+    int opcion;
+    int noEncontrado;
+    int indice;
+    do
     {
-        if(lista[i].isEmpty == 0)
+        noEncontrado = 1;
+        printf("\n INGRESE EL COLOR POR SU CODIGO \n");
+        printf(" id   color \n");
+        for(int i=0;i<tCol;i++)
         {
-            respuesta++;
+            printf(" %5d  %20s \n",colores[i].idColor,colores[i].nombreColor);
+
         }
-    }
-    return respuesta;
-}
 
-
-
-
-
-int mostrarColors(eColor lista[],int cantidad,char mensaje[])
-{
-    int error = 1;
-    int NoHayParaMostrar = 1;
-    int cantidadElementosPorPagina = 40;
-    float resto;
-
-    if(lista != NULL && cantidad != 0 && cantidadDeColorCargados(lista,cantidad) > 0)
-    {
-        system("cls");
-        printf(" %s \n", mensaje);
-       mostrarCamposParaColor();
-        for(int i = 0; i<cantidad; i++)
+        opcion = inputInt("Ingrese el id del color : ");
+        for(int i=0;i<tCol;i++)
         {
-            if(lista[i].isEmpty == 0)
+
+            if(colores[i].idColor == opcion)
             {
-                error = 0;
-                resto = i % cantidadElementosPorPagina;
-                if( resto == 0 && i > 0)
-                {
-                    inputChar("Pulse enter para continuar :");
-                    system("cls");
-                  mostrarCamposParaColor();
-                }
-                NoHayParaMostrar = 0;
-              mostrarUnColor(lista[i]);
-              printf("\n");
+                indice = i;
+                noEncontrado = 0;
+                break;
             }
         }
+        if(noEncontrado)
+        {
+            printf("\nNO SE ENCUENTRA EL NUMERO INGRESADO, VUELVA A INTENTARLO\n");
+        }
+
     }
-    if(NoHayParaMostrar)
+    while(noEncontrado);
+    if(!noEncontrado)
     {
-        printf("\nNo hay elementos para mostrar\n");
+         printf("\n_________________________________________________________\n");
+        printf(" %5d  %20s \n",colores[indice].idColor,colores[indice].nombreColor);
     }
 
-    return error;
+    return opcion;
 }
-
-
 
 
 

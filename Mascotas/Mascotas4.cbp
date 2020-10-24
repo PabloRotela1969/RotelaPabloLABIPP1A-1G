@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="Mascotas" />
+		<Option title="Mascotas4" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/Mascotas" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/Mascotas4" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -16,7 +16,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/Mascotas" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/Mascotas4" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -31,14 +31,15 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Clientes.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Clientes.h" />
 		<Unit filename="Colores.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Colores.h" />
-		<Unit filename="Fechas.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Fechas.h" />
+		<Unit filename="Fecha.h" />
 		<Unit filename="Funciones.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -47,6 +48,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Mascotas.h" />
+		<Unit filename="MascotasColores.h" />
 		<Unit filename="Servicios.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -62,8 +64,6 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Extensions>
-			<lib_finder disable_auto="1" />
-		</Extensions>
+		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
